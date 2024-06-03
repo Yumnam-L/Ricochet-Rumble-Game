@@ -1,0 +1,187 @@
+/* Media query for mobile devices */
+@media only screen and (max-width: 600px) {
+    /* Adjust board size for smaller screens */
+    #board {
+        width: 90vw; /* 90% of the viewport width */
+        height: 90vw; /* Set height same as width for a square board */
+        max-width: 400px; /* Set maximum width */
+        max-height: 400px; /* Set maximum height */
+    }
+
+    /* Adjust tile size for smaller screens */
+    .tile {
+        width: calc(90vw / 8); /* 90% of the viewport width divided by 8 */
+        height: calc(90vw / 8); /* Same height as width for square tiles */
+    }
+
+    /* Adjust timer and winner message for smaller screens */
+    #red-timer, #blue-timer, #winner {
+        font-size: 14px;
+    }
+
+    /* Adjust the rotate button for smaller screens */
+    #rotate-button {
+        font-size: 14px;
+    }
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+#game-container {
+    text-align: center;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(8, 50px);
+    grid-template-rows: repeat(8, 50px);
+    gap: 2px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.tile {
+    width: 50px;
+    height: 50px;
+    background-color: #fff;
+    border: 1px solid #524e4e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.red {
+    color: red;
+}
+
+.blue {
+    color: blue;
+}
+
+.cannon, .titan, .tank {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: darkgrey;
+}
+
+.semi-ricochet.red {
+    width: 0;
+    height: 0;
+    border-top: 50px solid red;
+    border-right: 50px solid transparent;
+}
+
+.semi-ricochet.blue {
+    width: 0;
+    height: 0;
+    border-bottom: 50px solid blue;
+    border-left: 50px solid transparent;
+}
+
+.ricochet {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.ricochet::after {
+    content: "\\";
+    position: absolute;
+    font-size: 450%; /* Adjust as needed to make the symbol large enough */
+    font-weight:normal;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(55deg);
+}
+/* Specific colors for red and blue ricochet pieces */
+.ricochet.red::after {
+    color: red;
+}
+
+.ricochet.blue::after {
+    color: blue;
+}
+#timer {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    margin: 10px auto;
+}
+
+#winner {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.bullet {
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 50%;
+    position: absolute;
+    transition: transform 0.5s linear;
+    z-index: 10;
+}
+
+.tile.highlight {
+    background-color: greenyellow;
+}
+/* Rotated states */
+.ricochet.rotated,
+.semi-ricochet.rotated {
+    transform: rotate(90deg); /* Adjust the rotation angle as needed */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.tile.selected {
+    border: 2px solid yellow;
+}
+
+.piece.chosen {
+    background-color: lightblue;
+}

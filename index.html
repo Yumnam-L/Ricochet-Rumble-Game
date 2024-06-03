@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricochet Rumble</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1 id="turn-indicator">Red's Turn</h1>
+        <div id="board"></div>
+        <div id="timer">
+            <span id="red-timer">Red: 120s</span>
+            <span id="blue-timer">Blue: 120s</span>
+        </div>
+        <button id="rotate-button" onclick="rotatePiece()">Rotate</button>
+        <button id="pause-button">Pause</button>
+        <button id="resume-button" style="display:none;">Resume</button>
+        <button id="reset-button">Reset</button>    
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="win-message"></h2>
+                <button onclick="closeModal()">Close</button>
+            </div>
+        </div>
+        
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
